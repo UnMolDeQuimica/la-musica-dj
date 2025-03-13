@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans 'Sheet music list' %}</h1>
+
+<a href="{% url 'sheet_music_create' %}"><button class="btn btn-info">{% trans 'Add new entry' %}</button></a>
+
+
+{% for object in object_list.reverse %}
+<h3><a href="{% url 'sheet_music_update' object.slug %}">{{ object.title }}</a></h3>
+
+{% endfor %}
+{% endblock content %}

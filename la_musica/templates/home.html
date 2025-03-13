@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div>
+    <select style="width: 300px;" class="mx-auto form-select"  onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+      <option value="" selected disabled hidden>{{ object.title }}</option>
+      {% for sheet_music in sheet_music_list %}
+      <option value="{% url 'home' sheet_music.slug %}">{{ sheet_music.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+    <div>
+    <h1>{{ object.title }}</h1>
+    {% if object.subtitle %} 
+    <h2>{{ object.subtitle }}</h2>
+    {% endif %}
+    <h3>{{ object.author }}</h3>
+    
+    <iframe id="musicFrame" src="{{ object.url }}" height="550" width="100%" frameborder="0" allowfullscreen allow="autoplay; midi"></iframe>
+    </div>
+
+{% endblock content %}

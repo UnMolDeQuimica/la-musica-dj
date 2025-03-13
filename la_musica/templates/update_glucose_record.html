@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+    <h1> {% trans 'Edit Sheet Music Data' %}</h1>
+
+    <iframe id="musicFrame" src="{{ object.url }}" height="550" width="100%" frameborder="0" allowfullscreen allow="autoplay; midi">
+    </iframe>
+    <div class="mx-auto" style="width: 20rem;">
+        <form method="post" class="my-class d-inline">
+            
+            {% csrf_token %}
+            
+            {{ form|crispy }}
+            
+            <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}">
+        </form>
+        <a href="{% url 'sheet_music_delete' object.slug %}"><button class="btn btn-danger d-inline-block">{% trans 'Delete' %}</button></a>
+    </div>
+
+{% endblock content %}
